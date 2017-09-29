@@ -46,7 +46,7 @@ public class AssymetricEncryption {
 	  
 
 
-	        byte[] encryptedData = encrypt("hi this is Visruth here".getBytes());
+	        byte[] encryptedData = encrypt("petit test".getBytes());
 
 	        byte[] decryptedData = decrypt(encryptedData);
 
@@ -86,7 +86,12 @@ public class AssymetricEncryption {
 
         return encrypt(global_publicKey,inputData);
     }
+    public  String encrypt(String inputData)
+            throws Exception {
+    	byte[] r = encrypt(global_publicKey,inputData.getBytes());
 
+        return new String(r);
+    }
     public  byte[] decrypt(byte[] privateKey, byte[] inputData)
             throws Exception {
 
@@ -106,7 +111,12 @@ public class AssymetricEncryption {
 
         return  decrypt(global_privateKey,inputData);
     }
+    public  String decrypt(String inputData)
+            throws Exception {
+    	byte[] r = decrypt(global_publicKey,inputData.getBytes());
 
+        return new String(r);
+    }
 
 
 
