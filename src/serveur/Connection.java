@@ -33,15 +33,13 @@ public class Connection {
 	            return;
 	        }
 	        String line;
-	        
-	        line = brinp.readLine();
-	        
 	        String[] temp ;
 	        byte[] retour;
 	        String string_retour;
 	        
-	        retour= ae.decrypt(line.getBytes());
-	        string_retour = new String(retour);
+	        line = brinp.readLine();
+	      
+	        string_retour = ae.decrypt(line);
 	        temp = string_retour.split("|");   
 	        name = temp[0];   
 	        sym_key = temp[1];

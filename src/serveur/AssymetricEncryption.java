@@ -35,9 +35,14 @@ public class AssymetricEncryption {
     }
     
     
-	public  void main(String[] args) throws Exception{
+    
+    
+	public static void main(String[] args) throws Exception{
+		
+		AssymetricEncryption ea = new AssymetricEncryption();
 		
 		try {
+			gen();
 			
 			
 			
@@ -46,9 +51,9 @@ public class AssymetricEncryption {
 	  
 
 
-	        byte[] encryptedData = encrypt("petit test".getBytes());
+	        byte[] encryptedData = ea.encrypt("petit test".getBytes());
 
-	        byte[] decryptedData = decrypt(encryptedData);
+	        byte[] decryptedData = ea.decrypt(encryptedData);
 
 	        System.out.println(new String(decryptedData));
 	        
@@ -111,11 +116,13 @@ public class AssymetricEncryption {
 
         return  decrypt(global_privateKey,inputData);
     }
+    
     public  String decrypt(String inputData)
             throws Exception {
     	byte[] r = decrypt(global_publicKey,inputData.getBytes());
+    	String re = new String(r);
 
-        return new String(r);
+        return re ;
     }
 
 
@@ -126,7 +133,7 @@ public class AssymetricEncryption {
 	    public static  void gen() throws NoSuchAlgorithmException, NoSuchProviderException, IOException {
 	    	
 	        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-	        keyGen.initialize(512);
+	        keyGen.initialize(2048);
 	        
 	        KeyPair kp = keyGen.genKeyPair();
 	        
