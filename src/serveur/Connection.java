@@ -19,6 +19,9 @@ public class Connection {
 	    }
 
 	    public void run() throws Exception {
+	    	
+	    	AssymetricEncryption ae = new AssymetricEncryption();
+	    	
 	        InputStream inp = null;
 	        BufferedReader brinp = null;
 	        DataOutputStream out = null;
@@ -37,7 +40,7 @@ public class Connection {
 	        byte[] retour;
 	        String string_retour;
 	        
-	        retour= AssymetricEncryption.decrypt(line.getBytes());
+	        retour= ae.decrypt(line.getBytes());
 	        string_retour = new String(retour);
 	        temp = string_retour.split("|");   
 	        name = temp[0];   

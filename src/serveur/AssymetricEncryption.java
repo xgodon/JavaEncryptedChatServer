@@ -21,11 +21,11 @@ import javax.crypto.Cipher;
 	
 public class AssymetricEncryption {
     private static final String ALGORITHM = "RSA";
-    static String pubtest;
-    static byte[] global_privateKey;
-    static byte[] global_publicKey;
+  
+    private byte[] global_privateKey;
+    private byte[] global_publicKey;
     
-    public static void init() throws Exception{
+    public AssymetricEncryption() throws Exception{
     	
 	       String puk = FileManager.readFirstLine("pub.txt");
 	       global_publicKey =Base64.getDecoder().decode(puk);
@@ -35,7 +35,7 @@ public class AssymetricEncryption {
     }
     
     
-	public static void main(String[] args) throws Exception{
+	public  void main(String[] args) throws Exception{
 		
 		try {
 			
@@ -67,7 +67,7 @@ public class AssymetricEncryption {
 	
 
 
-    public static byte[] encrypt(byte[] publicKey, byte[] inputData)
+    public  byte[] encrypt(byte[] publicKey, byte[] inputData)
             throws Exception {
 
         PublicKey key = KeyFactory.getInstance(ALGORITHM)
@@ -81,13 +81,13 @@ public class AssymetricEncryption {
         return encryptedBytes;
     }
     
-    public static byte[] encrypt(byte[] inputData)
+    public  byte[] encrypt(byte[] inputData)
             throws Exception {
 
         return encrypt(global_publicKey,inputData);
     }
 
-    public static byte[] decrypt(byte[] privateKey, byte[] inputData)
+    public  byte[] decrypt(byte[] privateKey, byte[] inputData)
             throws Exception {
 
         PrivateKey key = KeyFactory.getInstance(ALGORITHM)
@@ -101,7 +101,7 @@ public class AssymetricEncryption {
         return decryptedBytes;
     }
     
-    public static byte[] decrypt( byte[] inputData)
+    public  byte[] decrypt( byte[] inputData)
             throws Exception {
 
         return  decrypt(global_privateKey,inputData);
@@ -129,7 +129,7 @@ public class AssymetricEncryption {
 	        String pubKeyAsString = Base64.getEncoder().encodeToString(publicKey);
 	        String privKeyAsString = Base64.getEncoder().encodeToString(privateKey);
 	        
-	        pubtest = pubKeyAsString;
+
 	        
 	        System.out.println("public : "+ pubKeyAsString);
 	        System.out.println("private : "+ privKeyAsString);
