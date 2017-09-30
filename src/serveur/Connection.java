@@ -19,8 +19,9 @@ public class Connection {
 	    }
 
 	    public void run() throws Exception {
+	    	byte[] sk;
+	    	AssymetricEncryption ae = new AssymetricEncryption("pub.txt", "priv.txt");
 	    	
-	    	AssymetricEncryption ae = new AssymetricEncryption();
 	    	
 	        InputStream inp = null;
 	        BufferedReader brinp = null;
@@ -39,17 +40,20 @@ public class Connection {
 	        
 	        line = brinp.readLine();
 	      
+	        // Normalement le nom
 	        string_retour = ae.decrypt(line);
-	        temp = string_retour.split("|");   
-	        name = temp[0];   
-	        sym_key = temp[1];
 	        
-	        se = new SymetricEncryption();
+	        // le priv est faux mais ne sera pas utilisé, on veut juste decrypter avec la clef publique
+	        AssymetricEncryption ae_client = new AssymetricEncryption("pub_"+name+".txt", "priv.txt"); 
 	        
-	        se.constructKey(sym_key);
+	        // Construction de la clef commune secrete
+	        sk = DHEncryption.generateCommonSecretKey(ae.getGlobal_privateKey(), ae_client.getGlobal_publicKey());
 	        
 	        
-            out.writeBytes(se.getStringCrypt("Ok"));
+	        
+	        
+	        
+            out.writeBytes("coucou");
             out.flush();
 	        
 	        while (true) {

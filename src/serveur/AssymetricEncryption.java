@@ -25,10 +25,10 @@ public class AssymetricEncryption {
     private byte[] global_privateKey;
     private byte[] global_publicKey;
     
-    public AssymetricEncryption() throws Exception{
+    public AssymetricEncryption(String pub_file, String priv_file) throws Exception{
     	
-	       String puk = FileManager.readFirstLine("pub.txt");
-	       global_publicKey =Base64.getDecoder().decode(puk);
+	       String puk = FileManager.readFirstLine(pub_file);
+	       global_publicKey =Base64.getDecoder().decode(priv_file);
 	       
 	       String  prk = FileManager.readFirstLine("priv.txt");
 	       global_privateKey = Base64.getDecoder().decode(prk);
@@ -39,7 +39,7 @@ public class AssymetricEncryption {
     
 	public static void main(String[] args) throws Exception{
 		
-		AssymetricEncryption ea = new AssymetricEncryption();
+		AssymetricEncryption ea = new AssymetricEncryption("pub.txt", "priv.txt");
 		
 		try {
 			gen();
@@ -170,6 +170,35 @@ public class AssymetricEncryption {
 			return entree;
 	    	
 	    }
+
+
+
+
+		public byte[] getGlobal_privateKey() {
+			return global_privateKey;
+		}
+
+
+
+
+		public void setGlobal_privateKey(byte[] global_privateKey) {
+			this.global_privateKey = global_privateKey;
+		}
+
+
+
+
+		public byte[] getGlobal_publicKey() {
+			return global_publicKey;
+		}
+
+
+
+
+		public void setGlobal_publicKey(byte[] global_publicKey) {
+			this.global_publicKey = global_publicKey;
+		}
+	    
 	    
 	}
 

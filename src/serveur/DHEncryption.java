@@ -9,7 +9,7 @@ import javax.crypto.KeyAgreement;
 
 public class DHEncryption {
 	
-    public byte[] generateCommonSecretKey(byte[] priv, byte[] pub) {
+    public static byte[] generateCommonSecretKey(byte[] priv, byte[] pub) {
     
     	byte[] secretKey = null;
     	
@@ -31,7 +31,9 @@ public class DHEncryption {
         return secretKey;
     }
     
-    private byte[] shortenSecretKey(final byte[] longKey) {
+
+    
+    private static byte[] shortenSecretKey(final byte[] longKey) {
 
         try {
 
