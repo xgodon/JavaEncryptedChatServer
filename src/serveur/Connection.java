@@ -44,12 +44,12 @@ public class Connection {
 	        string_retour = ae.decrypt(line);
 	        
 	        // le priv est faux mais ne sera pas utilisé, on veut juste decrypter avec la clef publique
-	        AssymetricEncryption ae_client = new AssymetricEncryption("pub_"+name+".txt", "priv.txt"); 
+	        AssymetricEncryption ae_client = new AssymetricEncryption("pub_"+string_retour+".txt", "priv.txt"); 
 	        
 	        // Construction de la clef commune secrete
 	        sk = DHEncryption.generateCommonSecretKey(ae.getGlobal_privateKey(), ae_client.getGlobal_publicKey());
 	        
-	        
+	        String message = DHEncryption.encryptMessage(sk, message);
 	        
 	        
 	        
