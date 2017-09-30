@@ -54,7 +54,7 @@ public class DHEncryption {
 		return new String (encryptedMessage);
     }
     
-    public static String receiveAndDecryptMessage(byte[] sk,final String message) {
+    public static String decryptMessage(byte[] sk,final String message) {
     	String secretMessage = null;
         try {
 

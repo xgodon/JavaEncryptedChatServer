@@ -33,6 +33,14 @@ public class AssymetricEncryption {
         String prk = FileManager.readFirstLine(priv_file);
         global_privateKey = Base64.getDecoder().decode(prk);
     }
+    
+    public AssymetricEncryption(byte[] pubkey) throws Exception {
+
+       
+        global_publicKey = pubkey;
+
+
+    }   
 
     public static void main(String[] args) throws Exception {
 
@@ -109,7 +117,7 @@ public class AssymetricEncryption {
 
     public String decrypt(String inputData)
             throws Exception {
-        byte[] r = decrypt(global_publicKey, Base64.getDecoder().decode(inputData));
+        byte[] r = decrypt(global_publicKey, Base64.getMimeDecoder().decode(inputData));
         String re = new String(r);
 
         return re;
